@@ -39,7 +39,7 @@ router.get("/:_postId", async (req, res, next) => {
  const comments = await Comments.find(_postId).sort({createAt: "desc"});
  const data = comments.map((item) => {
    return {
-     commentId: item._Id,
+     commentId: item._id,
      user: item.user,
      content: item.content,
      createdAt: item.createAt

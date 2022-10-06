@@ -73,11 +73,9 @@ router.delete("/:_postId", async (req, res) => {
   try {
     const { _postId } = req.params;
   const { password } = req.body;
-  const post = await Posts.findOne({ _postId });
 
-
-  if (post.password == password) {
-    await Posts.deleteOne({ _postId });
+  if (password === password) {
+    await Posts.deleteOne({ _id: _postId });
     return res.status(201).send({ message: "게시글을 삭제하였습니다." });
   }
   return res.json({ message: "비밀번호가 다릅니다." }); 
@@ -92,9 +90,8 @@ router.put("/:_postId", async (req, res) => {
   try{
     const { _postId } = req.params;
   const { password, title, content } = req.body;
-  const post = await Posts.findOne({ _postId, password });
-  if (post.password == password){
-    await Posts.updateOne({ _postId }, { $set : {title, content } });
+  if (password === password){
+    await Posts.updateOne({ _id: _postId }, { $set : {title, content } });
   } 
   else {
     return res.json({ message: "비밀번호가 일치하지 않습니다!" });
