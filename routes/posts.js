@@ -37,6 +37,7 @@ router.get("/", async (req, res, next) => {
 
     const postResult = posts.map((item) => {
       return {
+      postId: item._id,
       user: item.user,
       title: item.title,
       content: item.content,
